@@ -12,6 +12,21 @@ export default function AdminNav() {
   const Router=useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const logOutCookies=async()=>
+  {
+   try {
+     const res=await axios.get('http://localhost:5000/logout',{withCredentials:true})
+     console.log(res.data)
+     const logout=res.data
+     if(logout.success)
+     {
+       Router.push('/Home')
+     }
+   } catch (error) {
+    console.log(error.message)
+   }
+
+  }
 
 
   return (
@@ -36,19 +51,24 @@ export default function AdminNav() {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
       
-          <Link href={'/Profile'} className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href={'/admin/Profile'} className="text-sm font-semibold leading-6 text-gray-900">
             Profile
           </Link>
-          <Link href={'/student'} className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href={'/admin'} className="text-sm font-semibold leading-6 text-gray-900">
             Home
           </Link>
-          <Link href={"/History"} className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href={'/admin/main'} className="text-sm font-semibold leading-6 text-gray-900">
+            DashBoard
+          </Link>
+          <Link href={"/admin/History"} className="text-sm font-semibold leading-6 text-gray-900">
           History
           </Link>
          
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <button className="text-sm font-semibold leading-6 text-gray-900">
+          <button 
+          onClick={logOutCookies}
+          className="text-sm font-semibold leading-6 text-gray-900">
             Log Out <span aria-hidden="true">&rarr;</span>
           </button>
         </div>
@@ -57,14 +77,14 @@ export default function AdminNav() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link href={"/"} className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt=""
               />
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -79,19 +99,25 @@ export default function AdminNav() {
               <div className="space-y-2 py-6">
                
                 <Link
-                  href={'/Profile'}
+                  href={'/admin/Profile'}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Profile
                 </Link>
                 <Link
-                  href={'/student'}
+                  href={'/admin'}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Home
                 </Link>
                 <Link
-                  href={'/History'}
+                  href={'/admin/main'}
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  href={'/admin/History'}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   History
@@ -99,7 +125,7 @@ export default function AdminNav() {
               </div>
               <div className="py-6">
                 <button
-                  
+                  onClick={logOutCookies}
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log Out

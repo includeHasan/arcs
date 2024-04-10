@@ -7,7 +7,7 @@ var router = express.Router();
 
 router.get('/student/:id',getSingleStudent)
 router.post('/login',adminLogin)
-
+// router.get("/dashboard", )
 
 
 

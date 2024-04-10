@@ -5,6 +5,7 @@ var formModal=require('../models/form');
 var { allStudent, studentLogin, student, studentFormSubmission } = require('../controllers/student');
 var jwt =require('jsonwebtoken');
 const { authenticateUser } = require('../middleware/auth');
+const { studentArchiveForm } = require('../controllers/form');
 
 
 router.get('/all-student',allStudent)
@@ -14,6 +15,7 @@ router.post('/student-login',studentLogin)
 router.get('/student',authenticateUser,student)
 
 router.post('/student-form', authenticateUser,studentFormSubmission);
+router.get('/student-history',authenticateUser,studentArchiveForm)
 
   router.get('/logout',async(req,res)=>{
     const token=req.cookies.token

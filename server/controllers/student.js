@@ -47,42 +47,10 @@ const student = async (req, res) => {
   res.json(studentDetails);
 };
 
-// const studentFormSubmission = async (req, res) => {
-//   try {
-//     const { className, destination, duration, line } = req.body;
-//     const token = req.cookies.token;
-
-//     if (!token) {
-//       return res.status(401).json({ message: "Unauthorized" });
-//     }
-
-//     const decodedToken = jwt.verify(token, process.env.secret_key);
-//     const userId = decodedToken.userId;
-
-//     const submittedForm = await formModal.create({
-//       className: className,
-//       destination: destination,
-//       line: line,
-//       duration: duration,
-//       student: userId,
-//     });
-
-//     await studentModal.updateOne(
-//       { _id: userId },
-//       { $set: { form: submittedForm._id } }
-//     );
-
-//     res
-//       .status(201)
-//       .json({ message: "Form submitted successfully", success: true });
-//   } catch (error) {
-//     console.error("Error submitting form:", error);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// };
 
 const studentFormSubmission = async (req, res) => {
   try {
+    console.log(req.body)
     const { className, destination, duration, line } = req.body;
     const token = req.cookies.token;
 
@@ -94,32 +62,37 @@ const studentFormSubmission = async (req, res) => {
     const userId = decodedToken.userId;
 
     const student = await studentModal.findById(userId).populate('archiveForms');
-
-    if (student.form) {
-      return res.status(400).json({ message: 'Form already submitted' });
-    }
-
-    if (student.fees_status === 'pending') {
-      return res.status(400).json({ message: 'Cannot submit form due to pending fees' });
-    }
-
-    if (student.academic_status === 'Dropout') {
-      return res.status(400).json({ message: 'Cannot submit form due to dropout academic status' });
-    }
-
     const latestArchiveForm = student.archiveForms.sort((a, b) => b.approvalDate - a.approvalDate)[0];
-
-    if (latestArchiveForm) {
-      const currentDate = new Date();
-      const approvalDate = new Date(latestArchiveForm.approvalDate);
-
-      if (duration === 'Monthly' && approvalDate.getMonth() === currentDate.getMonth()) {
-        return res.status(400).json({ message: 'Cannot submit form within the same month' });
-      } else if (duration === 'Quarterly' && approvalDate.getMonth() >= currentDate.getMonth() - 2) {
-        return res.status(400).json({ message: 'Cannot submit form within the same quarter' });
-      }
+    switch (true) {
+      case student.form:
+        console.log("error already submitted");
+        return res.status(400).json({ message: 'Form already submitted' });
+      case student.fees_status === 'pending':
+        return res.status(400).json({ message: 'Cannot submit form due to pending fees' });
+      case student.academic_status === 'Dropout':
+        return res.json({ message: 'Cannot submit form due to dropout academic status' });
+      case latestArchiveForm:
+        const currentDate = new Date();
+        const approvalDate = new Date(latestArchiveForm.approvalDate);
+        switch (duration) {
+          case 'Monthly':
+            if (approvalDate.getMonth() === currentDate.getMonth()) {
+              return res.status(400).json({ message: 'Cannot submit form within the same month' });
+            }
+            break;
+          case 'Quarterly':
+            if (approvalDate.getMonth() >= currentDate.getMonth() - 2) {
+              return res.status(400).json({ message: 'Cannot submit form within the same quarter' });
+            }
+            break;
+          default:
+            break;
+        }
+        break;
+      default:
+        break;
     }
-
+    
     const submittedForm = await formModal.create({
       className,
       destination,
@@ -136,6 +109,7 @@ const studentFormSubmission = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
 
 const studentLogout = async (req, res) => {
   const token = req.cookies.token;

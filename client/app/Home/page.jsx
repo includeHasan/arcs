@@ -40,14 +40,14 @@ export default function page() {
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <button>
                 <Link
-                  href="/Login"
+                  href="/student/Login"
                   className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Student Login
                 </Link>
               </button>
               <button className=''>
-                <Link href="/adminlogin" className="text-sm leading-6 hover:font-bold text-gray-900">
+                <Link href="/admin/login" className="text-sm leading-6 hover:font-bold text-gray-900">
                   Admin Login <span aria-hidden="true">→</span>
                 </Link>
               </button>

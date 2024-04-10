@@ -50,13 +50,13 @@ export default function StudentNav() {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
       
-          <Link href={'/Profile'} className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href={'/student/Profile'} className="text-sm font-semibold leading-6 text-gray-900">
             Profile
           </Link>
-          <Link href={'/student'} className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href={'/student/main'} className="text-sm font-semibold leading-6 text-gray-900">
             Home
           </Link>
-          <Link href={"/History"} className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href={"/student/History"} className="text-sm font-semibold leading-6 text-gray-900">
           History
           </Link>
          
@@ -95,19 +95,19 @@ export default function StudentNav() {
               <div className="space-y-2 py-6">
                
                 <Link
-                  href={'/Profile'}
+                  href={'/student/Profile'}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Profile
                 </Link>
                 <Link
-                  href={'/student'}
+                  href={'/student/main'}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Home
                 </Link>
                 <Link
-                  href={'/History'}
+                  href={'/student/History'}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   History
