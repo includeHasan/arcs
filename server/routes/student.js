@@ -8,7 +8,7 @@ const { authenticateUser } = require('../middleware/auth');
 const { studentArchiveForm } = require('../controllers/form');
 
 
-router.get('/all-student',allStudent)
+router.get('/all-student',authenticateUser,allStudent)
 
 router.post('/student-login',studentLogin)
 

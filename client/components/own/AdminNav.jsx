@@ -51,9 +51,7 @@ export default function AdminNav() {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
       
-          <Link href={'/admin/Profile'} className="text-sm font-semibold leading-6 text-gray-900">
-            Profile
-          </Link>
+         
           <Link href={'/admin'} className="text-sm font-semibold leading-6 text-gray-900">
             Home
           </Link>
@@ -98,12 +96,7 @@ export default function AdminNav() {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                
-                <Link
-                  href={'/admin/Profile'}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Profile
-                </Link>
+          
                 <Link
                   href={'/admin'}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"

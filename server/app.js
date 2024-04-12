@@ -12,6 +12,7 @@ const dotenv = require('dotenv');
 const ConnectDb= require('./config/dbconnect');
 var formRouter=require('./routes/form')
 var archiveModal=require('./models/archive');
+const { authenticateUser } = require('./middleware/auth');
 
 var app = express();
 dotenv.config({path:'./.env'})
@@ -37,7 +38,7 @@ app.use(bodyParser.urlencoded({extended :false}))
 app.use('/', indexRouter);
 app.use('/admin',adminRouter) 
 app.use('/form',formRouter)
-app.get('/archive', async (req, res) => {
+app.get('/archive', authenticateUser,async (req, res) => {
   try {
     let data = await archiveModal.find().populate('student');
     res.send(data);

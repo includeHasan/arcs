@@ -3,9 +3,10 @@ var { getSingleStudent,adminLogin} =require('../controllers/a')
 var archiveModal=require('../models/archive')
 var adminModal=require('../models/admin')
 var express = require('express');
+const { authenticateUser } = require('../middleware/auth');
 var router = express.Router();
 
-router.get('/student/:id',getSingleStudent)
+router.get('/student/:id',authenticateUser,getSingleStudent)
 router.post('/login',adminLogin)
 // router.get("/dashboard", )
 
