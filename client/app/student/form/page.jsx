@@ -36,7 +36,7 @@ const Page = () => {
         });
         setCountdown(3);
       } else {
-        toast.error('Error submitting the form. Please try again.', {
+        toast.error('Your application cannot be processed due to one of the following reasons: \n\n1. Outstanding fees are not paid. Please clear your dues and try again.\n\n2. Your academic status is currently "Dropout". Please contact the administrative office for further assistance.\n\n3. You have already submitted an application that is currently under review. Please wait for the processing of your previous submission.', {
           position: 'bottom-right',
           autoClose: 5000,
           hideProgressBar: false,

@@ -29,4 +29,6 @@ router.get('/student-history',authenticateUser,studentArchiveForm)
     res.status(200).json({message:'Logged out successfully',success:true})
   })
 
+
+
 module.exports=router

@@ -11,7 +11,7 @@ var Form =require('./models/form')
 const dotenv = require('dotenv');
 const ConnectDb= require('./config/dbconnect');
 var formRouter=require('./routes/form')
-var adminModal=require('./models/admin');
+var archiveModal=require('./models/archive');
 
 var app = express();
 dotenv.config({path:'./.env'})
@@ -37,7 +37,15 @@ app.use(bodyParser.urlencoded({extended :false}))
 app.use('/', indexRouter);
 app.use('/admin',adminRouter) 
 app.use('/form',formRouter)
-
+app.get('/archive', async (req, res) => {
+  try {
+    let data = await archiveModal.find().populate('student');
+    res.send(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred while retrieving data');
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -53,6 +61,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 
 ConnectDb()
