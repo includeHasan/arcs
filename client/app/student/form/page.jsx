@@ -15,7 +15,7 @@ const Page = () => {
   const [line, setLine] = useState('');
   const [countdown, setCountdown] = useState(null);
   const centralStations = [
-    "Chhatrapati Shivaji Maharaj Terminus",
+    " Shivaji Terminus",
     "Masjid",
     "Sandhurst Road",
     "Byculla",

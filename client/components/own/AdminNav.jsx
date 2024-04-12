@@ -35,9 +35,11 @@ export default function AdminNav() {
         <div className="p-1/3">
          
            
-           
-            <img className='w-[30%]' src="/Logo.jpg" alt="logo" />
+           <Link href={'/'}>
+           <img className='w-[30%]' src="/Logo.jpg" alt="logo" />
    
+           </Link>
+            
         </div>
         <div className="flex lg:hidden">
           <button

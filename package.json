@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install:all": "npm install && cd client && npm install && cd ../server && npm install",
-  "start:all": "concurrently \"cd client && npm run dev\" \"cd server && npx nodemon\""
+  "start:all": "concurrently \"cd client && npm run dev\" \"cd server && npx nodemon\"",
+  "app":"cd client && node app"
   },
   "keywords": [],
   "author": "",
