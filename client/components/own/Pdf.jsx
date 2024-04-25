@@ -102,7 +102,25 @@ const MyDocument = ({ detail }) => (
             <Text style={styles.label}>College Year:</Text>
             <Text style={styles.input}>{detail.student.college_year}</Text>
           </View>
-          {/* ... other academic information fields */}
+          {/* ..    <View>
+        <Text style={styles.sectionHeading}>Travel Information</Text>
+        <View style={{ marginBottom: 4 }}>
+          <Text style={styles.label}>Destination:</Text>
+          <Text style={styles.input}>{detail.destination}</Text>
+        </View>
+        <View style={{ marginBottom: 4 }}>
+          <Text style={styles.label}>Class:</Text>
+          <Text style={styles.input}>{detail.className}</Text>
+        </View>
+        <View style={{ marginBottom: 4 }}>
+          <Text style={styles.label}>Duration:</Text>
+          <Text style={styles.input}>{detail.duration}</Text>
+        </View>
+        <View style={{ marginBottom: 4 }}>
+          <Text style={styles.label}>Line:</Text>
+          <Text style={styles.input}>{detail.line}</Text>
+        </View>
+      </View>. other academic information fields 
         </View>
       </View>
       <View>

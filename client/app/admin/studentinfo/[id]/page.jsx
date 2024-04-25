@@ -8,7 +8,7 @@ const app = () => {
   const params=useParams()
   const getDetail=async()=>
   {
-     
+     console.log("data:"+params.id)
       const res=await axios.get(`http://localhost:5000/admin/student/${params.id}`)
       const data=res.data;
       console.log(data)

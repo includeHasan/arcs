@@ -54,7 +54,7 @@ const app = () => {
                 <td className="border-b border-r border-white py-2 px-4">{student.college_year}</td>
                 <td className="border-b border-r border-white py-2 px-4">{student.gender}</td>
                 <td className="border-b border-white py-2 px-4">
-                  <Link href={`/studentinfo/${student._id}`} className="text-indigo-500 hover:bg-indigo-200 rounded p-1">view</Link>
+                  <Link href={`/admin/studentinfo/${student._id}`} className="text-indigo-500 hover:bg-indigo-200 rounded p-1">view</Link>
                 </td>
               </tr>
             ))}

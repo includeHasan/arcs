@@ -6,9 +6,9 @@ var express = require('express');
 const { authenticateUser } = require('../middleware/auth');
 var router = express.Router();
 
-router.get('/student/:id',authenticateUser,getSingleStudent)
+router.get('/student/:id',getSingleStudent)
 router.post('/login',adminLogin)
-// router.get("/dashboard", )
+
 
 
 
